@@ -61,7 +61,7 @@ def add_parameter(command, flag, value)
 end
 
 def add_bool_parameter(command, flag, value)
-  command << "#{flag}" if value
+  command << "#{flag}" if value=="true"
 end
 
 def export_sauce_artifacts(download_dir)

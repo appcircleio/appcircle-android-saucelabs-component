@@ -58,15 +58,12 @@ end
 
 def update_app_path(config_path)
   config = YAML.load_file(config_path)
+  new_app_path = get_env("AC_SL_APP_PATH")
+  new_test_app_path = get_env("AC_TEST_APP_PATH")
 
   if config['espresso']
-    new_app_path = get_env("AC_APK_PATH")
-    new_test_app_path = get_env("AC_TEST_APK_PATH")
     target_config = config['espresso']
-    
   elsif config['xcuitest']
-    new_app_path = get_env("AC_TEST_APP_PATH")
-    new_test_app_path = get_env("AC_TEST_IPA_PATH")
     target_config = config['xcuitest']
   else
     puts "No recognizable configuration (espresso or xcuitest) found in the YAML file."

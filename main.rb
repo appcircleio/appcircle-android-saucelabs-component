@@ -56,6 +56,38 @@ def check_suite_name(config_path, suite_name)
   end
 end
 
+def update_app_path(config_path)
+  config = YAML.load_file(config_path)
+
+  if config['espresso']
+    new_app_path = get_env("AC_APK_PATH")
+    new_test_app_path = get_env("AC_TEST_APK_PATH")
+    target_config = config['espresso']
+    
+  elsif config['xcuitest']
+    new_app_path = get_env("AC_TEST_APP_PATH")
+    new_test_app_path = get_env("AC_TEST_IPA_PATH")
+    target_config = config['xcuitest']
+  else
+    puts "No recognizable configuration (espresso or xcuitest) found in the YAML file."
+    exit 0
+  end
+
+  if !new_app_path || !new_test_app_path
+    puts "Missing app or testApp path. Please make sure you have built the test app before this step."
+    exit 0
+  end
+
+  target_config['app'] = new_app_path
+  target_config['testApp'] = new_test_app_path
+
+  File.open(config_path, 'w') do |file|
+    file.write(config.to_yaml)
+  end
+
+  puts "Updated .sauce/config.yml with new app and testApp paths."
+end
+
 def add_parameter(command, flag, value)
   command << "#{flag}=#{value}" if value
 end
@@ -81,16 +113,18 @@ sl_username = env_has_key("AC_SL_USERNAME")
 sl_access_key = env_has_key("AC_SL_ACCESS_KEY")
 auth_saucelabs(sl_username, sl_access_key)
 sl_run_only_via_config = get_env("AC_RUN_ONLY_VIA_CONFIG") || "false"
-sl_select_suite = get_env("AC_SL_SELECT_SUITE")
-check_suite_name(sl_config_path, sl_select_suite)
-sl_rel_download_dir = get_env("AC_SL_DOWNLOAD_DIR")
-sl_download_dir = sl_rel_download_dir.nil? ? nil : File.join($repo_dir, sl_rel_download_dir)
+update_app_path(sl_config_path)
 
 sl_params = []
 add_parameter(sl_params, "--config", sl_config_path)
 if sl_run_only_via_config == "true"
   puts "Only configuration file mode enabled. Running raw config file (#{sl_config_path})."
 else
+  sl_select_suite = get_env("AC_SL_SELECT_SUITE")
+  check_suite_name(sl_config_path, sl_select_suite)
+  sl_rel_download_dir = get_env("AC_SL_DOWNLOAD_DIR")
+  sl_download_dir = sl_rel_download_dir.nil? ? nil : File.join($repo_dir, sl_rel_download_dir)
+
   add_parameter(sl_params, "--artifacts.cleanup", get_env("AC_SL_ARTIFACT_CLEANUP") || "false")
   add_parameter(sl_params, "--artifacts.download.directory", sl_download_dir)
   add_parameter(sl_params, "--artifacts.download.match", get_env("AC_SL_DOWNLOAD_MATCH"))

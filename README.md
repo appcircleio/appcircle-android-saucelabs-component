@@ -14,6 +14,8 @@ Automate the execution of UI tests for Android applications using Saucectl by Sa
 
 ### Optional
 
+- `AC_SL_APP_PATH`: Path to the main application file that will be tested. This should be the location of the app (APK for Android or IPA for iOS) within the Sauce Labs environment or your build process. If not provided, app will be used as default in `config.yml`.
+- `AC_SL_TEST_APP_PATH`: Path to the test application file, which contains the test code to be run against the main app. This is usually a separate test APK for Android or an additional test bundle for iOS. If not provided, app will be used as default in `config.yml`.
 - `AC_SL_SELECT_SUITE`: Specifies a test suite to execute by name rather than all suites defined in the config file. Check [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/run/#--select-suite) documentation for the option detail.
 - `AC_SL_ARTIFACT_CLEANUP`: Clear the artifacts directory before downloading new test data. Check [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/run/#--artifactscleanup) documentation for the option detail.
 - `AC_SL_DOWNLOAD_DIR`: Specifies the path to the folder location in which to download artifacts. Define this variable by taking your repository directory as the root, for example `./.sauce/artifacts`. A separate subdirectory is generated in this location for each suite for which artifacts are downloaded. Must be set in conjunction with `Sauce Labs Download Match` and `Sauce Labs When to Download Artifacts`. Check [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/run/#--artifactsdownloaddirectory) documentation for the option detail.

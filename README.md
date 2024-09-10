@@ -1,4 +1,4 @@
-# Appcircle _Saucectl Run_ component
+# Appcircle Sauce Labs Saucectl component
 
 Automate the execution of UI tests for Android and iOS applications using Saucectl by Sauce Labs.
 

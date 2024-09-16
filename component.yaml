@@ -1,5 +1,5 @@
 platform: Common
-buildPlatform: ReactNative, JavaKotlin, Flutter, ObjectiveCSwift
+buildPlatform: JavaKotlin, ObjectiveCSwift
 displayName: "Sauce Labs Saucectl"
 description: "Automate the execution of UI tests for iOS and Android applications using Saucectl by Sauce Labs."
 inputs:
@@ -18,7 +18,7 @@ inputs:
     isRequired: true
     title: Sauce Labs Access Key
     description: "Sauce Labs access key. It must be set as a secret environment variable."
-  - key: "AC_RUN_ONLY_VIA_CONFIG"
+  - key: "AC_SL_RUN_ONLY_VIA_CONFIG"
     defaultValue: "false"
     editorType: select
     options: "true,false"

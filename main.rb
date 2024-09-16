@@ -59,7 +59,7 @@ end
 def update_app_path(config_path)
   config = YAML.load_file(config_path)
   new_app_path = get_env("AC_SL_APP_PATH")
-  new_test_app_path = get_env("AC_TEST_APP_PATH")
+  new_test_app_path = get_env("AC_SL_TEST_APP_PATH")
 
   if config['espresso']
     target_config = config['espresso']
@@ -109,7 +109,7 @@ check_config_file(sl_config_path)
 sl_username = env_has_key("AC_SL_USERNAME")
 sl_access_key = env_has_key("AC_SL_ACCESS_KEY")
 auth_saucelabs(sl_username, sl_access_key)
-sl_run_only_via_config = get_env("AC_RUN_ONLY_VIA_CONFIG") || "false"
+sl_run_only_via_config = get_env("AC_SL_RUN_ONLY_VIA_CONFIG") || "false"
 update_app_path(sl_config_path)
 
 sl_params = []

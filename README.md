@@ -42,19 +42,11 @@ Below workflow steps are related with this step and should be used as recommende
 
 ### Required Steps
 
-There is no required step that needs to be run beforehand for this step to work as expected.
+There are some required step that needs to be run beforehand for this step to work as expected.
 
 - [Git Clone](https://docs.appcircle.io/workflows/common-workflow-steps/git-clone)
 - [Android Build for UI Testing](https://docs.appcircle.io/workflows/android-specific-workflow-steps/android-build-for-ui-testing)
-
-For ReactNative, JavaKotlin:
-
-- [Android Build](https://docs.appcircle.io/workflows/android-specific-workflow-steps/android-build)
-
-For Flutter:
-
-- [Flutter Build for Android](https://docs.appcircle.io/workflows/flutter-specific-workflow-steps/flutter-build-for-android)
-
+- [Xcodebuild for Testing](https://docs.appcircle.io/workflows/ios-specific-workflow-steps/xcodebuild-for-testing)
 
 ### Preceding Steps
 
@@ -62,6 +54,6 @@ There is no preceding step advised to be run beforehand for this step to work as
 
 ### Following Steps
 
-There are no subsequent steps advised to be run for this step to work as expected.
+There is subsequent steps advised to be run for this step to work as expected.
 
 - [Export Build Artifact](https://docs.appcircle.io/workflows/common-workflow-steps/export-build-artifacts)

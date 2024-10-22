@@ -9,7 +9,7 @@ Automate the execution of UI tests for Android and iOS applications using Saucec
 - `AC_SL_CONFIG_PATH`: Path to the Sauce Labs configuration file. Check [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/run/#--config) documentation for the option detail.
 - `AC_SL_USERNAME`: Sauce Labs username.
 - `AC_SL_ACCESS_KEY`: Sauce Labs access key.
-- `AC_RUN_ONLY_VIA_CONFIG`: Whether to run only using the configuration file. If you select this field as `true`, you will not need to fill in the following options.
+- `AC_SL_RUN_ONLY_VIA_CONFIG`: Whether to run only using the configuration file. If you select this field as `true`, you will not need to fill in the following options.
 - `AC_SL_REGION`: Specifies the Sauce Labs data center through which tests will run. Check [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/run/#--region) documentation for the option detail.
 
 ### Optional
